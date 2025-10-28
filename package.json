@@ -1,17 +1,24 @@
 {
-  "name": "app-pushy",
-  "version": "1.0.0",
+  "name": "fias-pushy",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "./bin/cli.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
     "pushy": "./bin/cli.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "cli",
+    "push",
+    "deploy",
+    "fias",
+    "app store connect",
+    "google play console"
+  ],
+  "author": "Azizbek Usmonov",
+  "license": "MIT",
   "type": "module",
   "dependencies": {
     "chalk": "^5.6.2",
@@ -21,9 +28,11 @@
     "ora": "^9.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
+    "which": "^5.0.0",
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@types/node": "^24.9.1"
+    "@types/node": "^24.9.1",
+    "@types/which": "^3.0.4"
   }
 }
