@@ -6,7 +6,7 @@ import chalk from "chalk";
 export async function createConfig(
   platformCredentials: PlatformInfo,
   appName: string,
-  bundleId: string,
+  bundleId: string
 ) {
   if (platformCredentials.name === "unknown") {
     return null;

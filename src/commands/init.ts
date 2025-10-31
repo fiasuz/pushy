@@ -11,12 +11,12 @@ export async function initCommand() {
   const spinner = ora();
 
   // Check Fastlane
-  spinner.start("Check Fastlane installation");
   await ensureFastlane();
 
   // Detect project type
   spinner.start("Detecting project type...");
   const platform = await detectPlatform();
+  spinner.succeed("Project type detected: " + chalk.cyan(platform.name));
 
   // Answers
   const answers = await inquirer.prompt([
@@ -24,7 +24,7 @@ export async function initCommand() {
     {
       name: "bundleId",
       message: "Bundle ID / Package name:",
-      default: "com.example.myapp",
+      default: "uz.mycompany.myawesomeapp",
       type: "input",
     },
   ]);
@@ -37,7 +37,7 @@ export async function initCommand() {
   console.log(chalk.bold.cyan("🎉 Pushy initialized successfully!"));
   console.log(
     chalk.gray(
-      "Next step: run 'npx pushy build android' or 'npx pushy build ios'\n",
-    ),
+      "Next step: run 'npx pushy build android' or 'npx pushy build ios'\n"
+    )
   );
 }

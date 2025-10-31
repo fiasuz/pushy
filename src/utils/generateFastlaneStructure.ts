@@ -11,7 +11,7 @@ export async function generateFastlaneStructure() {
 
   fs.writeFileSync(
     fastfilePath,
-    `default_platform(:ios)\n\nplatform :ios do\n  desc "Build iOS app"\n  lane :build do\n    puts "Building iOS..."\n  end\nend`,
+    `default_platform(:ios)\n\nplatform :ios do\n  desc "Build iOS app"\n  lane :build do\n    puts "Building iOS..."\n  end\nend`
   );
   console.log(chalk.green("Fastlane structure generated"));
 }

@@ -1,10 +1,14 @@
+import chalk from "chalk";
 import { execa } from "execa";
 import inquirer from "inquirer";
 import which from "which";
 
 export async function ensureFastlane() {
-  const fastlaneExists = await which("fastlane").catch(() => false);
-  if (fastlaneExists) return true;
+  const fastlaneExists = await which("fastlane", { nothrow: true });
+
+  if (fastlaneExists) {
+    return;
+  }
 
   const { install } = await inquirer.prompt([
     {
@@ -28,17 +32,18 @@ export async function ensureFastlane() {
   } else if (process.platform === "win32") {
     await execa("gem", ["install", "fastlane"], { stdio: "inherit" });
   } else {
-    console.log("Your system is not supporting on current version. Exiting...");
-    process.exit(1);
+    throw new Error(
+      "Unsupported OS for automatic Fastlane install. Please install manually."
+    );
   }
 
-  console.log("Fastlane installed successfully!");
+  console.log(chalk.green("Fastlane installed successfully!"));
 }
 
 export async function uploadToGooglePlay(
   aabPath: string,
   serviceKey: string,
-  packageName: string,
+  packageName: string
 ) {
   await execa(
     "fastlane",
@@ -53,14 +58,14 @@ export async function uploadToGooglePlay(
       "--track",
       "internal",
     ],
-    { stdio: "inherit" },
+    { stdio: "inherit" }
   );
 }
 
 export async function uploadToAppStore(
   ipaPath: string,
   apiKeyPath: string,
-  bundleId: string,
+  bundleId: string
 ) {
   await execa(
     "fastlane",
@@ -77,6 +82,6 @@ export async function uploadToAppStore(
       "--skip_metadata",
       "true",
     ],
-    { stdio: "inherit" },
+    { stdio: "inherit" }
   );
 }
